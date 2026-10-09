@@ -1,0 +1,25 @@
+# Docker aliases: add these lines at the end of ~/.bashrc, then run: source ~/.bashrc
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias dstart='docker start'
+alias dstop='docker stop'
+alias drestart='docker restart'
+alias drm='docker rm'
+alias dlogs='docker logs'
+alias dexec='docker exec -it'
+alias drun='docker run'
+
+alias dimg='docker images'
+alias dpull='docker pull'
+alias dbuild='docker build -t'
+alias drmi='docker rmi'
+
+alias dvol='docker volume ls'
+alias dnet='docker network ls'
+alias dc='docker compose'
+alias dcup='docker compose up -d'
+alias dcdown='docker compose down'
+
+alias dprune='docker system prune'
+alias dstopall='docker stop $(docker ps -q)'
+alias drmall='docker rm $(docker ps -aq)'

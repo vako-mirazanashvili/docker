@@ -1,0 +1,27 @@
+services:
+  nginx:
+    image: nginx
+    container_name: web
+    ports:
+      - "8080:80"
+    volumes:
+      - webdata:/usr/share/nginx/html
+    depends_on:
+      - ftp
+
+  ftp:
+    image: delfer/alpine-ftp-server
+    container_name: ftp
+    # fix: the default start of this image stops after a few seconds
+    entrypoint: ["sh", "-c", "sh /bin/start_vsftpd.sh; tail -f /dev/null"]
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"
+    environment:
+      - USERS=${FTP_USER}|${FTP_PASSWORD}|/usr/share/nginx/html
+      - ADDRESS=${VM_IP}
+    volumes:
+      - webdata:/usr/share/nginx/html
+
+volumes:
+  webdata:
